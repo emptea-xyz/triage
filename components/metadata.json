@@ -1,0 +1,37 @@
+{
+    "name": "Claynosaurz #2079",
+    "symbol": "DINO",
+    "description": "Claynosaurz is a collection of 10,000 3D animated NFTs. Helmed by a team of leading animation and game industry artists, Claynosaurz aims to rewrite the narrative on how successful IP can be built out of web3. With massive potential for scaling, the Genesis collection is an all access pass to our Universe.",
+    "seller_fee_basis_points": 500,
+    "image": "https://nftstorage.link/ipfs/bafybeifgs7sgx46oxrexg6qzwrd7vb35juhavmmfrvci3bxx5hl7wjoica/2078.gif",
+    "external_url": "https://twitter.com/Claynosaurz",
+    "attributes": [
+        { "trait_type": "Species", "value": "Ankylo" },
+        { "trait_type": "Skin", "value": "Mirage" },
+        { "trait_type": "Color", "value": "Aqua" },
+        { "trait_type": "Motion", "value": "Idle" },
+        { "trait_type": "Mood", "value": "Bored" },
+        { "trait_type": "Background", "value": "Salmon" },
+        { "trait_type": "Layer Count", "value": "1" },
+        { "trait_type": "Back", "value": "Off" },
+        { "trait_type": "Belly", "value": "Off" },
+        { "trait_type": "Pattern", "value": "Off" },
+        { "trait_type": "Details", "value": "On" }
+    ],
+    "properties": {
+        "creators": [{
+            "address": "36tfiBtaDGjAMKd6smPacHQhe4MXycLL6f9ww9CD1naT",
+            "share": 100
+        }],
+        "files": [{
+                "uri": "https://nftstorage.link/ipfs/bafybeifgs7sgx46oxrexg6qzwrd7vb35juhavmmfrvci3bxx5hl7wjoica/2078.gif",
+                "type": "image/gif"
+            },
+            {
+                "uri": "https://nftstorage.link/ipfs/bafybeig6rfsvg326efwj2g7qwdntrq5hgbvflb2ooivpw7am7hk3kg25dm/2078.png",
+                "type": "image/png"
+            }
+        ],
+        "category": "image"
+    }
+}

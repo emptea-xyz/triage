@@ -1,0 +1,294 @@
+@media only screen and (min-width: 768px) {
+    .create {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+    }
+    .create-wrapper {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+    }
+    .create-panel {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        margin: 10px;
+        padding: 20px;
+        border: none;
+        border-radius: 20px;
+        background: var(--white-faded);
+    }
+    .create-panel-left,
+    .create-panel-right {
+        margin: 10px;
+    }
+    .create-title input {
+        width: 380px;
+        height: inherit;
+        margin: 0;
+        margin-top: 10px;
+        padding: 0;
+        background-color: transparent;
+        border: 0;
+        outline: none;
+        font-family: "Inter Tight SemiBold";
+        font-size: 24px;
+        color: var(--white);
+    }
+    .create-title input::placeholder {
+        opacity: 0.5;
+    }
+    .create-description textarea {
+        width: 400px;
+        height: 120px;
+        margin: 0;
+        padding: 0;
+        background-color: transparent;
+        border: 0;
+        outline: none;
+        font-family: "Inter Tight Regular";
+        font-size: 16px;
+        resize: none;
+        color: var(--white);
+    }
+    .create-description textarea::placeholder {
+        opacity: 0.5;
+    }
+    .create-cover-input-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+        width: 400px;
+        height: 400px;
+        border: 2px dashed var(--sign);
+        border-radius: 10px;
+        color: var(--black);
+        background-color: var(--white-faded);
+        cursor: pointer;
+        text-align: center;
+        font-family: "Inter Tight Regular";
+    }
+    .create-cover-input-button:hover {
+        border: 2px dashed var(--black);
+        transition-duration: 0.2s;
+    }
+    .create-cover-input-button:not(:hover) {
+        transition-duration: 0.2s;
+    }
+    #file-input-text,
+    #file-input-cover {
+        display: none;
+    }
+    .create-cover-input-button img {
+        width: 400px;
+        border-radius: 10px;
+    }
+    .metadata {
+        display: flex;
+        align-items: center;
+        justify-content: left;
+        border-radius: 20px;
+    }
+    .metadata input {
+        margin: 5px;
+        padding: 10px;
+        width: 275px;
+        border: 0px solid white;
+        border-radius: 10px;
+        background-color: var(--white-faded);
+        color: var(--white);
+        outline: none;
+        font-family: "Inter Tight Regular";
+        font-size: 16px;
+    }
+    .metadata input::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+    }
+    .metadata-adder {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        margin-top: 10px;
+        padding: 10px;
+        width: 600px;
+        height: 50px;
+        background-color: var(--sign);
+        border: 0px solid white;
+        border-radius: 10px;
+        outline: none;
+        font-family: "Inter Tight Regular";
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .create {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .create-board {
+        margin-top: 15vh;
+        margin-bottom: 5px;
+        display: block;
+        padding: 20px;
+        border-radius: 5px;
+        background-color: var(--white-faded);
+    }
+    .create-board-wrapper {
+        display: block;
+        margin: 0;
+        padding: 0;
+    }
+    .create-board-info-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .create-board-info {
+        margin: 10px;
+        width: 80vw;
+        text-align: center;
+        font-family: "Inter Tight Regular";
+        font-size: 14px;
+        color: var(--white-faded);
+    }
+    .create-board-info a {
+        color: var(--sign);
+    }
+    .create-editor textarea {
+        width: calc(80vw - 40px);
+        height: 15vh;
+        padding: 20px;
+        background-color: var(--white-faded);
+        border: 0;
+        border-radius: 10px;
+        outline: none;
+        font-family: "Inter Tight Regular";
+        font-size: 16px;
+        resize: none;
+        color: var(--white);
+    }
+    .create-editor textarea::placeholder {
+        opacity: 1;
+    }
+    .create-preview {
+        width: calc(80vw - 40px);
+        height: 15vh;
+        margin: 0;
+        margin-top: 5px;
+        padding: 20px;
+        overflow-x: scroll;
+        background-color: var(--white-faded);
+        border: 0;
+        border-radius: 10px;
+        outline: none;
+        font-family: "Inter Tight Regular";
+        font-size: 16px;
+        resize: none;
+        color: var(--white);
+    }
+    .create-preview h1,
+    .create-preview h2,
+    .create-preview h3,
+    .create-preview h4 {
+        margin: 0;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding: 0;
+    }
+    .create-preview p,
+    .create-preview ul,
+    .create-preview code {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    .create-preview a {
+        color: var(--sign);
+    }
+    .create-preview hr {
+        display: none;
+    }
+    .create-preview img {
+        margin: 0;
+        padding: 0;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        width: calc(80vw - 40px);
+        box-sizing: border-box;
+    }
+    .create-wrapper {
+        display: block;
+        width: 80vw;
+        margin: 0;
+        padding: 20px;
+        margin-bottom: 30vh;
+        border-radius: 5px;
+        background-color: var(--white-faded);
+    }
+    .create-cover-input-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+        width: 80vw;
+        height: 80vw;
+        border: 2px dashed var(--sign);
+        border-radius: 10px;
+        color: var(--black);
+        background-color: var(--white-faded);
+        cursor: pointer;
+        text-align: center;
+        font-family: "Inter Tight Regular";
+    }
+    .create-cover-input-button img {
+        max-width: 80vw;
+        border-radius: 10px;
+    }
+    #file-input-cover,
+    #file-input-text {
+        display: none;
+    }
+    .create-title input {
+        width: 80vw;
+        height: inherit;
+        margin: 0;
+        margin-top: 10px;
+        padding: 0;
+        background-color: transparent;
+        border: 0;
+        outline: none;
+        font-family: "Inter Tight SemiBold";
+        font-size: 24px;
+        color: var(--white);
+    }
+    .create-author {
+        color: var(--sign);
+        font-family: "Inter Tight SemiBold";
+    }
+    .create-description textarea {
+        width: 80vw;
+        height: 120px;
+        margin: 0;
+        padding: 0;
+        background-color: transparent;
+        border: 0;
+        outline: none;
+        font-family: "Inter Tight Regular";
+        font-size: 16px;
+        resize: none;
+        color: var(--white);
+    }
+    .create-description textarea::placeholder {
+        opacity: 0.5;
+    }
+}
