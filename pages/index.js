@@ -23,8 +23,7 @@ function index() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [metadata, setMetadata] = useState([]);
-  const [metadata_name, setMetadata_name] = useState("");
-  const [metadata_value, setMetadata_value] = useState("");
+  const [metadataValidation, setMetadataValidation] = useState(false);
   const [symbol, setSymbol] = useState("");
   const [link, setLink] = useState("");
   const [royalty, setRoyalty] = useState(0);
@@ -34,6 +33,28 @@ function index() {
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDE1Mzg1Nzk3MzIzRDFBNTc3YmQxN0FCRDU2NzAwNjE5NWQ5YzY5ODMiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY3MDIyMjQyNTQ0OCwibmFtZSI6IkVtcHRlYSBUb2tlbml6ZXIifQ.-bFsgzIY6TOY_dmUsyRa0upv-Z0g9Ox3K5BCbzkrrws"
   );
 
+  function formatMetadata(text) {
+    const rawstring = text.toString();
+    const string = rawstring.replace("\n", "");
+
+    const stringArray = string.split(",");
+
+    const metadataObjectArray = [];
+    for (let i = 0; i < stringArray.length; i++) {
+      const metadataArray = stringArray[i].split(":");
+      if (metadataArray.length != 2) {
+        setMetadataValidation(false);
+      } else {
+        const metadataObject = {
+          trait_type: metadataArray[0].replace("\n", ""),
+          value: metadataArray[1].replace("\n", ""),
+        };
+        metadataObjectArray.push(metadataObject);
+        setMetadataValidation(true);
+      }
+    }
+    console.log(metadataObjectArray);
+  }
   function checkImage() {
     const fileInput = document.getElementById("file-input-cover");
     if (fileInput.files.length > 0) {
@@ -91,7 +112,6 @@ function index() {
       console.log(e.toString());
     }
   }
-
   async function mint() {
     if (wallet.connected) {
       enqueueSnackbar("Creating...");
@@ -113,17 +133,17 @@ function index() {
     <>
       <Navbar id={0} />
       <div className="create">
-        <div className="create-wrapper">
-          <div className="create-panel">
-            <div className="create-panel-left">
-              <div className="create-panel-left-content">
-                <div className="create-cover">
-                  <div className="create-cover-input">
+        <div className="wrapper">
+          <div className="panel">
+            <div className="panel-left">
+              <div className="panel-left-content">
+                <div className="cover">
+                  <div className="cover-input">
                     <button
                       onClick={() =>
                         document.getElementById("file-input-cover").click()
                       }
-                      className="create-cover-input-button"
+                      className="cover-input-button"
                     >
                       {coverPreview ? (
                         <img src={coverPreview} />
@@ -143,8 +163,8 @@ function index() {
                     />
                   </div>
                 </div>
-                <div className="create-main-description">
-                  <div className="create-title">
+                <div className="main-description">
+                  <div className="title">
                     <input
                       type="text"
                       placeholder="Enter the name"
@@ -153,7 +173,7 @@ function index() {
                       }}
                     />
                   </div>
-                  <div className="create-description">
+                  <div className="description">
                     <textarea
                       placeholder="A short description. (max. 200 words)"
                       maxLength={200}
@@ -165,49 +185,14 @@ function index() {
                 </div>
               </div>
             </div>
-            <div className="create-panel-right">
-              <div className="create-panel-right-content">
+            <div className="panel-right">
+              <div className="panel-right-content">
+                <div className="metadata-title">Metadata</div>
                 <div className="metadata">
-                  <input
-                    className="metadata-key"
-                    type="text"
-                    name="metadata-key"
-                    placeholder="name"
-                    maxLength={40}
+                  <textarea
+                    placeholder="Add your metadata. (Format: color:blue,edition:limited )"
                     onChange={(e) => {
-                      setEdition(e.target.value);
-                    }}
-                  />
-                  <input
-                    className="metadata-value"
-                    type="text"
-                    name="metadata-value"
-                    placeholder="value"
-                    maxLength={40}
-                    onChange={(e) => {
-                      setEdition(e.target.value);
-                    }}
-                  />
-                </div>
-                <div className="metadata">
-                  <input
-                    className="metadata-key"
-                    type="text"
-                    name="metadata-key"
-                    placeholder="name"
-                    maxLength={40}
-                    onChange={(e) => {
-                      setEdition(e.target.value);
-                    }}
-                  />
-                  <input
-                    className="metadata-value"
-                    type="text"
-                    name="metadata-value"
-                    placeholder="value"
-                    maxLength={40}
-                    onChange={(e) => {
-                      setEdition(e.target.value);
+                      formatMetadata(e.target.value);
                     }}
                   />
                 </div>

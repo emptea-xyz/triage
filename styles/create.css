@@ -8,12 +8,12 @@
         margin: 0;
         padding: 0;
     }
-    .create-wrapper {
+    .wrapper {
         display: flex;
         align-items: flex-start;
         justify-content: center;
     }
-    .create-panel {
+    .panel {
         display: flex;
         align-items: flex-start;
         justify-content: center;
@@ -23,11 +23,11 @@
         border-radius: 20px;
         background: var(--white-faded);
     }
-    .create-panel-left,
-    .create-panel-right {
+    .panel-left,
+    .panel-right {
         margin: 10px;
     }
-    .create-title input {
+    .title input {
         width: 380px;
         height: inherit;
         margin: 0;
@@ -40,10 +40,10 @@
         font-size: 24px;
         color: var(--white);
     }
-    .create-title input::placeholder {
+    .title input::placeholder {
         opacity: 0.5;
     }
-    .create-description textarea {
+    .description textarea {
         width: 400px;
         height: 120px;
         margin: 0;
@@ -56,10 +56,10 @@
         resize: none;
         color: var(--white);
     }
-    .create-description textarea::placeholder {
+    .description textarea::placeholder {
         opacity: 0.5;
     }
-    .create-cover-input-button {
+    .cover-input-button {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -75,57 +75,44 @@
         text-align: center;
         font-family: "Inter Tight Regular";
     }
-    .create-cover-input-button:hover {
+    .cover-input-button:hover {
         border: 2px dashed var(--black);
         transition-duration: 0.2s;
     }
-    .create-cover-input-button:not(:hover) {
+    .cover-input-button:not(:hover) {
         transition-duration: 0.2s;
     }
     #file-input-text,
     #file-input-cover {
         display: none;
     }
-    .create-cover-input-button img {
+    .cover-input-button img {
         width: 400px;
         border-radius: 10px;
     }
-    .metadata {
-        display: flex;
-        align-items: center;
-        justify-content: left;
-        border-radius: 20px;
-    }
-    .metadata input {
-        margin: 5px;
-        padding: 10px;
-        width: 275px;
-        border: 0px solid white;
-        border-radius: 10px;
-        background-color: var(--white-faded);
+    .metadata-title {
         color: var(--white);
-        outline: none;
-        font-family: "Inter Tight Regular";
-        font-size: 16px;
+        font-family: "Inter Tight SemiBold";
+        font-size: 24px;
+        margin-left: 10px;
     }
-    .metadata input::placeholder {
-        color: rgba(255, 255, 255, 0.5);
-    }
-    .metadata-adder {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    .metadata textarea {
+        width: 400px;
+        height: 120px;
         margin: 0;
         margin-top: 10px;
-        padding: 10px;
-        width: 600px;
-        height: 50px;
-        background-color: var(--sign);
-        border: 0px solid white;
-        border-radius: 10px;
+        padding: 20px;
+        background-color: var(--white-faded);
+        border: 0;
+        border-radius: 20px;
         outline: none;
         font-family: "Inter Tight Regular";
         font-size: 16px;
+        resize: none;
+        color: var(--white);
+    }
+    .metadata textarea::placeholder {
+        opacity: 0.5;
     }
 }
 
@@ -135,97 +122,7 @@
         align-items: center;
         justify-content: center;
     }
-    .create-board {
-        margin-top: 15vh;
-        margin-bottom: 5px;
-        display: block;
-        padding: 20px;
-        border-radius: 5px;
-        background-color: var(--white-faded);
-    }
-    .create-board-wrapper {
-        display: block;
-        margin: 0;
-        padding: 0;
-    }
-    .create-board-info-wrapper {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .create-board-info {
-        margin: 10px;
-        width: 80vw;
-        text-align: center;
-        font-family: "Inter Tight Regular";
-        font-size: 14px;
-        color: var(--white-faded);
-    }
-    .create-board-info a {
-        color: var(--sign);
-    }
-    .create-editor textarea {
-        width: calc(80vw - 40px);
-        height: 15vh;
-        padding: 20px;
-        background-color: var(--white-faded);
-        border: 0;
-        border-radius: 10px;
-        outline: none;
-        font-family: "Inter Tight Regular";
-        font-size: 16px;
-        resize: none;
-        color: var(--white);
-    }
-    .create-editor textarea::placeholder {
-        opacity: 1;
-    }
-    .create-preview {
-        width: calc(80vw - 40px);
-        height: 15vh;
-        margin: 0;
-        margin-top: 5px;
-        padding: 20px;
-        overflow-x: scroll;
-        background-color: var(--white-faded);
-        border: 0;
-        border-radius: 10px;
-        outline: none;
-        font-family: "Inter Tight Regular";
-        font-size: 16px;
-        resize: none;
-        color: var(--white);
-    }
-    .create-preview h1,
-    .create-preview h2,
-    .create-preview h3,
-    .create-preview h4 {
-        margin: 0;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        padding: 0;
-    }
-    .create-preview p,
-    .create-preview ul,
-    .create-preview code {
-        margin-top: 5px;
-        margin-bottom: 5px;
-    }
-    .create-preview a {
-        color: var(--sign);
-    }
-    .create-preview hr {
-        display: none;
-    }
-    .create-preview img {
-        margin: 0;
-        padding: 0;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        width: calc(80vw - 40px);
-        box-sizing: border-box;
-    }
-    .create-wrapper {
+    .wrapper {
         display: block;
         width: 80vw;
         margin: 0;
@@ -234,7 +131,7 @@
         border-radius: 5px;
         background-color: var(--white-faded);
     }
-    .create-cover-input-button {
+    .cover-input-button {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -250,7 +147,7 @@
         text-align: center;
         font-family: "Inter Tight Regular";
     }
-    .create-cover-input-button img {
+    .cover-input-button img {
         max-width: 80vw;
         border-radius: 10px;
     }
@@ -258,7 +155,7 @@
     #file-input-text {
         display: none;
     }
-    .create-title input {
+    .title input {
         width: 80vw;
         height: inherit;
         margin: 0;
@@ -271,11 +168,11 @@
         font-size: 24px;
         color: var(--white);
     }
-    .create-author {
+    .author {
         color: var(--sign);
         font-family: "Inter Tight SemiBold";
     }
-    .create-description textarea {
+    .description textarea {
         width: 80vw;
         height: 120px;
         margin: 0;
@@ -288,7 +185,7 @@
         resize: none;
         color: var(--white);
     }
-    .create-description textarea::placeholder {
+    .description textarea::placeholder {
         opacity: 0.5;
     }
 }
