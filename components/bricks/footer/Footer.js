@@ -19,14 +19,14 @@ export default function Footer() {
       const root = document.querySelector(":root");
       root.style.setProperty("--black", "black");
       root.style.setProperty("--white", "white");
-      root.style.setProperty("--white-faded", "rgba(255, 255, 255, 0.2)");
-      root.style.setProperty("--black-faded", "rgba(0, 0, 0, 0.2)");
+      root.style.setProperty("--white-faded", "rgba(255, 255, 255, 0.5)");
+      root.style.setProperty("--black-faded", "rgba(0, 0, 0, 0.5)");
     } else if (!darkMode) {
       const root = document.querySelector(":root");
       root.style.setProperty("--black", "white");
       root.style.setProperty("--white", "black");
-      root.style.setProperty("--black-faded", "rgba(255, 255, 255, 0.2)");
-      root.style.setProperty("--white-faded", "rgba(0, 0, 0, 0.2)");
+      root.style.setProperty("--black-faded", "rgba(255, 255, 255, 0.5)");
+      root.style.setProperty("--white-faded", "rgba(0, 0, 0, 0.5)");
     }
   });
 
@@ -47,18 +47,8 @@ export default function Footer() {
       <div className="footer-right">
         <ul>
           <li>
-            <Link href="https://twitter.com/empteaxyz" target={"_blank"}>
-              twitter
-            </Link>
-          </li>
-          <li>
-            <Link href="https://discord.gg/D5YCfRjSDY" target={"_blank"}>
-              discord
-            </Link>
-          </li>
-          <li>
-            <Link href="https://emptea.xyz" target={"_blank"}>
-              emptea
+            <Link href="https://github.com/them2dt" target={"_blank"}>
+              Built by M2DT.
             </Link>
           </li>
 

@@ -13,20 +13,18 @@ import Navbar from "../components/bricks/navbar/Navbar";
 import Footer from "../components/bricks/footer/Footer";
 
 function index() {
-  const connection = new Connection(clusterApiUrl("devnet"));
+  const connection = new Connection(
+    "https://rpc.helius.xyz/?api-key=6ab23117-c35c-4e3c-94f2-1ec14d058d0d"
+  );
   const metaplex = new Metaplex(connection);
   const wallet = useWallet();
   metaplex.use(walletAdapterIdentity(wallet));
 
   const [cover, setCover] = useState(null);
   const [coverPreview, setCoverPreview] = useState(null);
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [title, setTitle] = useState(null);
+  const [description, setDescription] = useState(null);
   const [metadata, setMetadata] = useState([]);
-  const [metadataValidation, setMetadataValidation] = useState(false);
-  const [symbol, setSymbol] = useState("");
-  const [link, setLink] = useState("");
-  const [royalty, setRoyalty] = useState(0);
 
   const { enqueueSnackbar } = useSnackbar();
   const [nftApiToken] = useState(
@@ -36,21 +34,23 @@ function index() {
   function formatMetadata(text) {
     const rawstring = text.toString();
     const string = rawstring.replace("\n", "");
-
     const stringArray = string.split(",");
-
     const metadataObjectArray = [];
-    for (let i = 0; i < stringArray.length; i++) {
-      const metadataArray = stringArray[i].split(":");
-      if (metadataArray.length != 2) {
-        setMetadataValidation(false);
-      } else {
-        const metadataObject = {
-          trait_type: metadataArray[0].replace("\n", ""),
-          value: metadataArray[1].replace("\n", ""),
-        };
-        metadataObjectArray.push(metadataObject);
-        setMetadataValidation(true);
+
+    if (rawstring.length <= 1) {
+      setMetadata([]);
+    } else {
+      for (let i = 0; i < stringArray.length; i++) {
+        const metadataArray = stringArray[i].split(":");
+        if (metadataArray.length != 2) {
+        } else {
+          const metadataObject = {
+            trait_type: metadataArray[0].replace("\n", ""),
+            value: metadataArray[1].replace("\n", ""),
+          };
+          metadataObjectArray.push(metadataObject);
+          setMetadata(metadataObjectArray);
+        }
       }
     }
     console.log(metadataObjectArray);
@@ -59,18 +59,16 @@ function index() {
     const fileInput = document.getElementById("file-input-cover");
     if (fileInput.files.length > 0) {
       console.log(fileInput.files);
-      if (fileInput.files[0].type.toString() == "image/png") {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-          const img = new Image();
-          img.src = e.target.result;
-          img.onload = function () {
-            setCover(fileInput.files);
-            setCoverPreview([reader.result]);
-          };
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const img = new Image();
+        img.src = e.target.result;
+        img.onload = function () {
+          setCover(fileInput.files);
+          setCoverPreview([reader.result]);
         };
-        reader.readAsDataURL(fileInput.files.item(0));
-      }
+      };
+      reader.readAsDataURL(fileInput.files.item(0));
     }
   }
   async function uploadCover() {
@@ -92,16 +90,20 @@ function index() {
       enqueueSnackbar(e.toString());
     }
   }
-  async function uploadMetadata({ cover }) {
+  async function uploadMetadata() {
     const token = nftApiToken;
+    enqueueSnackbar("uploading metadata...");
+    const cover = await uploadCover();
+    console.log("The cover: " + cover);
+
     try {
       const client = new NFTStorage({ token });
       const object = {
         name: title,
         description: description,
-        symbol: symbol,
+        symbol: "EMPTEA",
         image: cover,
-        external_url: link,
+        external_url: "https://emptea.xyz",
         attributes: metadata,
       };
       const json = JSON.stringify(object);
@@ -121,11 +123,14 @@ function index() {
         await metaplex.nfts().create({
           uri: metadata,
           name: title,
-          symbol: symbol,
-          sellerFeeBasisPoints: royalty,
+          symbol: "EMPTEA",
+          sellerFeeBasisPoints: 500,
         });
         enqueueSnackbar("Done! Check your wallet.");
       } catch (e) {}
+      enqueueSnackbar("minting...");
+    } else {
+      await wallet.connect();
     }
   }
 
@@ -153,12 +158,11 @@ function index() {
                         </div>
                       )}
                     </button>
-
                     <input
                       type="file"
                       name="cover"
                       id="file-input-cover"
-                      accept="image/png"
+                      accept="image/*"
                       onChange={checkImage}
                     />
                   </div>
@@ -167,7 +171,7 @@ function index() {
                   <div className="title">
                     <input
                       type="text"
-                      placeholder="Enter the name"
+                      placeholder="Enter the name."
                       onChange={(e) => {
                         setTitle(e.target.value);
                       }}
@@ -175,7 +179,7 @@ function index() {
                   </div>
                   <div className="description">
                     <textarea
-                      placeholder="A short description. (max. 200 words)"
+                      placeholder="Add a description."
                       maxLength={200}
                       onChange={(e) => {
                         setDescription(e.target.value);
@@ -187,7 +191,6 @@ function index() {
             </div>
             <div className="panel-right">
               <div className="panel-right-content">
-                <div className="metadata-title">Metadata</div>
                 <div className="metadata">
                   <textarea
                     placeholder="Add your metadata. (Format: color:blue,edition:limited )"
@@ -196,12 +199,34 @@ function index() {
                     }}
                   />
                 </div>
+                <div className="metadata-result">
+                  {metadata.map((c) => (
+                    <div className="metadata-result-item">
+                      <div className="metadata-result-item-name">
+                        {c.trait_type.toString()}
+                      </div>
+                      <div className="metadata-result-item-value">
+                        {c.value.toString()}
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
       <Footer />
+      <div className="mint-button-container">
+        <button
+          className="mint-button"
+          onClick={async () => {
+            await mint();
+          }}
+        >
+          Mint
+        </button>
+      </div>
     </>
   );
 }
