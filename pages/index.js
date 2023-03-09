@@ -12,7 +12,7 @@ import { useSnackbar } from "notistack";
 import Navbar from "../components/bricks/navbar/Navbar";
 import Footer from "../components/bricks/footer/Footer";
 
-function index() {
+function Index() {
   const connection = new Connection(
     "https://rpc.helius.xyz/?api-key=6ab23117-c35c-4e3c-94f2-1ec14d058d0d"
   );
@@ -201,7 +201,10 @@ function index() {
                 </div>
                 <div className="metadata-result">
                   {metadata.map((c) => (
-                    <div className="metadata-result-item">
+                    <div
+                      className="metadata-result-item"
+                      key={c.trait_type.toString()}
+                    >
                       <div className="metadata-result-item-name">
                         {c.trait_type.toString()}
                       </div>
@@ -231,4 +234,4 @@ function index() {
   );
 }
 
-export default index;
+export default Index;
